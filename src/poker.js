@@ -48,6 +48,9 @@ class Poker {
 
   // =========================================================================
 
+  // Extension #1 code additions
+
+  // Helper function to calculate a pair's score - returns 0 if not a pair
   pairScore(pair) {
     if (this.handIsPair(pair)) {
       return 2 * this.cardScore(pair[0])
@@ -73,10 +76,15 @@ class Poker {
 
   // =========================================================================
 
+  // Extension #2 code additions
 
   handIsTriple(hand) {
     return hand[0] === hand[1] && hand[1] === hand[2]
   }
+
+  // Helper function to extract a pair (if one exists) from a 3 card hand
+  // that is not a triple
+  // Returns [] if no pair is found or the hand is actually a triple
 
   pairFromHand(hand) {
     if (hand.length === 3 && !this.handIsTriple(hand)) {
@@ -95,6 +103,7 @@ class Poker {
     return []
   }
 
+  // Helper function to calculate a triple's score - returns 0 if not a triple
   tripleScore(hand) {
     if (this.handIsTriple(hand)) {
       return 3 * this.cardScore(hand[0])
@@ -102,6 +111,9 @@ class Poker {
       return 0
     }
   }
+
+  // A helper function that is used to keep track of the biggest hand given
+  // two hands that can be a combination of pairs and/or triples
 
   biggestHand(hand1, hand2) {
     if (hand1.length > hand2.length) {
